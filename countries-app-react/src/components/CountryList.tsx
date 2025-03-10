@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { fetchCountries } from '../services/api';
+import "./CountryList.css";
+
+import React, { useEffect, useState } from "react";
+
+import { Country } from "../entities/country";
+import { fetchCountries } from "../services/api";
 
 const CountryList: React.FC = () => {
-  const [countries, setCountries] = useState<string[]>([]);
+  const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -12,7 +16,7 @@ const CountryList: React.FC = () => {
         const data = await fetchCountries();
         setCountries(data);
       } catch (err) {
-        setError('Failed to fetch countries');
+        setError("Failed to fetch countries");
       } finally {
         setLoading(false);
       }
@@ -32,7 +36,10 @@ const CountryList: React.FC = () => {
   return (
     <ul>
       {countries.map((country, index) => (
-        <li key={index}>{country}</li>
+        <>
+          <img src={""} alt={country.iconUrl} height="32px" width="32px" />
+          <li key={index}>{country.name}</li>
+        </>
       ))}
     </ul>
   );
