@@ -37,5 +37,9 @@ export class AppComponent implements OnInit {
       });
   }
 
+  getGDP() {
+    this.countryService.calculateCountryGDP();
+  }
+
   searchChanged() {}
 }

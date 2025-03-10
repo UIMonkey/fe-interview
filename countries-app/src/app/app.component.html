@@ -1,7 +1,14 @@
 <h1>Countries of the World</h1>
-<button type="button" class="material-btn" (click)="getData()">
-  FETCH DATA
-</button>
+
+<div class="button-container">
+  <button type="button" class="material-btn" (click)="getData()">
+    FETCH DATA
+  </button>
+  <button type="button" class="material-btn" (click)="getGDP()">
+    Calculate GDP
+  </button>
+</div>
+
 <ul>
   <li *ngFor="let country of countryData" aria-label="list-item">
     <img [src]="" height="32px" width="32px" />

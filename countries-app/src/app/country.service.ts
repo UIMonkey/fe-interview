@@ -14,14 +14,21 @@ export class CountryService {
 
   constructor(private http: HttpClient) {}
 
-  public fetchCountryData(): Observable<Country[]> {
+  fetchCountryData(): Observable<Country[]> {
     return this.http.get<IAPICountry[]>('').pipe(
       first(),
       map((result: IAPICountry[]) => this.mapToDisplayData(result))
     );
   }
 
-  public mapToDisplayData(countryData: IAPICountry[]): Country[] {
+  public calculateCountryGDP(): number {
+    const start = Date.now();
+    while (Date.now() - start < 5000) {}
+    console.log('Task completed after 5 seconds.');
+    return Math.random() * 1000000000;
+  }
+
+  private mapToDisplayData(countryData: IAPICountry[]): Country[] {
     return countryData.map((data) => {
       return Country.buildFromAPI(data);
     });
